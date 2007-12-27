@@ -1,9 +1,9 @@
 <h1>Editing game</h1>
 
-<%= start_form_tag :action => 'update', :id => @game %>
+<% form_tag :action => 'update', :id => @game do -%>
   <%= render :partial => 'form' %>
   <%= submit_tag 'Edit' %>
-<%= end_form_tag %>
+<% end -%>
 
 <%= link_to 'Show', :action => 'show', :id => @game %> |
 <%= link_to 'Back', :action => 'list' %>
