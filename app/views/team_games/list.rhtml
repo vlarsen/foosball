@@ -47,7 +47,7 @@ for team_game in @team_games
     <td class="list_actions">
 <%= link_to 'Show', :action => 'show', :id => team_game %>
 <%= link_to 'Edit', :action => 'edit', :id => team_game %>
-<%= link_to 'Destroy', { :action => 'destroy', :id => team_game }, :confirm => 'Are you sure?' %></td>
+<%= link_to 'Destroy', { :action => 'destroy', :id => team_game }, :confirm => 'Are you sure?', :method => "post" %></td>
   </tr>
 <% end %>
 </table>

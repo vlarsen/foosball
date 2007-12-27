@@ -79,7 +79,7 @@ for game in @games
     <td class="list_actions">
 <%= link_to 'Show', :action => 'show', :id => game %>
 <%= link_to 'Edit', :action => 'edit', :id => game %>
-<%= link_to 'Destroy', { :action => 'destroy', :id => game }, :confirm => 'Are you sure?', :post => true %></td>
+<%= link_to 'Destroy', { :action => 'destroy', :id => game }, :confirm => 'Are you sure?', :method => "post" %></td>
   </tr>
 <% end %>
 </table>
