@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+first:
+  id: 1
+  played_at: 2006-03-04 10:34
+  red: vlarsen
+  redscore: 10
+  blue: boros
+  bluescore: 8
+another:
+  id: 2
+  played_at: 2006-03-04 10:40
+  red: boros
+  redscore: 10
+  blue: vlarsen
+  bluescore: 6
+yet_another:
+  id: 3
+  played_at: 2006-03-05 12:40
+  red: gv
+  redscore: 10
+  blue: vlarsen
+  bluescore: 9
+  

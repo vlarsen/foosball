@@ -1,0 +1,3 @@
+<% @games.each do |g| -%>
+<%= g.played_at.iso8601 %>,<%= g.red %>,<%= g.blue %>,<%= g.redscore %>,<%= g.bluescore %>
+<% end -%>

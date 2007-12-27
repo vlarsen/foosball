@@ -1,0 +1,62 @@
+<div style="float: right">
+  <h1>Current table status</h1>
+  <img src="http://dhcp-246.trondheim.corp.yahoo.com:8888/out.jpg" alt="Table status"/>
+</div>
+
+<h1>Listing team games</h1>
+
+<table>
+<%
+odd_or_even = 0
+for team_game in @team_games
+  odd_or_even = 1 - odd_or_even
+  if team_game.redscore > team_game.bluescore
+    redscoreclass  = "winner_result"
+    bluescoreclass = "looser_result"
+  else
+    redscoreclass  = "looser_result"
+    bluescoreclass = "winner_result"
+  end
+%>
+  <tr class="listrow<%= odd_or_even %>">
+    <td><%= team_game.played_at.strftime("%Y-%m-%d %H:%M") %></td>
+    <td>
+      <table class="result">
+        <tr>
+          <td rowspan="2"><span class="red_player">
+      <%= render(:partial => "shared/player", :object => team_game.red1) %>
+      <%= render(:partial => "shared/player", :object => team_game.red2) %>
+      </span>
+          </td>
+          <td align="right">
+            <span class="<%=  redscoreclass %>"><%= team_game.redscore  %></span>
+          </td>
+          <td>-</td>
+          <td align="left">
+            <span class="<%= bluescoreclass %>"><%= team_game.bluescore %></span>
+          </td>
+          <td rowspan="2">
+      <span class="blue_player">
+      <%= render(:partial => "shared/player", :object => team_game.blue1) %>
+      <%= render(:partial => "shared/player", :object => team_game.blue2) %>
+      </span>
+          </td>
+        </tr>
+        <tr>
+          <td align="right"><%= rating_change(team_game.red_rating_diff) %></td>
+          <td></td>
+          <td align="left"><%= rating_change(team_game.blue_rating_diff) %></td>
+        </tr>
+      </table>
+    </td>
+    <td class="list_actions">
+<%= link_to 'Show', :action => 'show', :id => team_game %>
+<%= link_to 'Edit', :action => 'edit', :id => team_game %>
+<%= link_to 'Destroy', { :action => 'destroy', :id => team_game }, :confirm => 'Are you sure?' %></td>
+  </tr>
+<% end %>
+</table>
+
+<div class="pagination">
+page: <%= pagination_links(@team_game_pages) %>
+</div>

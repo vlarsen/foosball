@@ -1,0 +1,89 @@
+<div class="rightsidebar">
+  <h3>Rating list</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Player</th>
+        <th>Rating</th>
+        <th>Games</th>
+      </tr>
+    </thead>
+    <tbody>
+  <%
+    rank = 0
+    fake_rank = rank
+    prev_rating = 0
+    odd_or_even = 0
+    @players.each do |player|
+      odd_or_even = 1 - odd_or_even
+      rank += 1
+      this_rating = player.rating.round
+      if this_rating != prev_rating
+        fake_rank = rank
+      end
+      prev_rating = this_rating
+
+      this_won = player.won.to_i
+      this_lost = player.lost.to_i
+      this_numgames = this_won + this_lost
+  %>
+      <tr class="sidebarrow<%= odd_or_even%>">
+        <td><%= fake_rank %></td>
+        <td><%= player.name %></td>
+        <td><%= player.rating.round %></td>
+        <td><%= player.won %>w + <%= player.lost %>l = <%= player.total_games %></td>
+      </tr>
+  <%
+    end
+  %>
+    </tbody>
+  </table>
+</div>
+
+<h2>Listing games <%= "for #{link_to @for_player, {:controller => "matrix", :action => "score_versus", :id => @for_player}}" if @for_player %> </h2>
+
+<table>
+<%
+odd_or_even = 0
+for game in @games
+  odd_or_even = 1 - odd_or_even
+  if game.redscore > game.bluescore
+    redscoreclass  = "winner_result"
+    bluescoreclass = "looser_result"
+  else
+    redscoreclass  = "looser_result"
+    bluescoreclass = "winner_result"
+  end
+-%>
+  <tr class="listrow<%= odd_or_even %>">
+    <td><%= game.played_at.strftime("%Y-%m-%d %H:%M") %></td>
+    <td>
+      <table class="result">
+        <tr>
+          <td rowspan="2"><a class="red_player" href="/games/list/<%= game.red %>">
+            <%= render(:partial => "shared/player", :object => game.red) %></a></td>
+          <td align="right"><span class="<%= redscoreclass %>"><%= game.redscore %></span></td>
+          <td>&nbsp;-&nbsp;</td>
+          <td align="left"><span class="<%= bluescoreclass %>"><%= game.bluescore %></td>
+          <td rowspan="2"><a class="blue_player" href="/games/list/<%= game.blue %>">
+              <%= render(:partial => "shared/player", :object => game.blue) %></a></td>
+        </tr>
+        <tr>
+          <td align="right"><%= rating_change(game.red_rating_diff) %></td>
+          <td></td>
+          <td align="left"><%= rating_change(game.blue_rating_diff) %></td>
+        </tr>
+      </table>
+    </td>
+    <td class="list_actions">
+<%= link_to 'Show', :action => 'show', :id => game %>
+<%= link_to 'Edit', :action => 'edit', :id => game %>
+<%= link_to 'Destroy', { :action => 'destroy', :id => game }, :confirm => 'Are you sure?', :post => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<div class="pagination">
+page: <%= pagination_links(@game_pages) %>
+</div>

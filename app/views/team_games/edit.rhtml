@@ -1,0 +1,9 @@
+<h1>Editing team_game</h1>
+
+<%= start_form_tag :action => 'update', :id => @team_game %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<%= end_form_tag %>
+
+<%= link_to 'Show', :action => 'show', :id => @team_game %> |
+<%= link_to 'Back', :action => 'list' %>

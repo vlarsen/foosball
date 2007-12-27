@@ -1,0 +1,181 @@
+body { background-color: #fff; color: #333; }
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }
+
+#heading {
+  border: 1px solid #339;
+  padding: 5px;
+  font-size: 150%;
+}
+#heading h1 {
+  padding-top: 0px;
+}
+#heading h1 a, #heading h1 a:visited, #heading h1 a:hover {
+  color: #000;
+  background-color: #fff;
+}
+
+#heading .menu {
+  padding: 5px;
+  background-color: #339;
+  color: white;
+}
+#heading .menu a {
+  padding: 2px;
+  color: white;
+}
+
+.list_actions {
+  font-size: x-small;
+}
+
+.listrow0 {
+  background-color: #e0e0f8;
+}
+.listrow1 {
+  background-color: #c0c0f8;
+}
+
+.rightsidebar {
+    float: right;
+}
+
+.rightsidebar th, .rightsidebar td {
+    font-size: 75%;
+}
+
+.sidebarrow0 {
+  background-color: #f8e0e0;
+}
+.sidebarrow1 {
+  background-color: #f8c0c0;
+}
+
+table {
+  border-collapse: collapse;
+}
+th {
+  border: 2px solid black;
+}
+td {
+  border: 1px solid black;
+}
+table.result th, table.result td {
+    border: 0px;
+}
+
+.form th, .form td {
+  border: none;
+}
+th, td {
+  padding: 0.5em;
+}
+
+.winner_result {
+  font-weight: bold;
+}
+.looser_result {
+  font-weight: normal;
+}
+
+.red_player img {
+  border: 2px solid red;
+}
+.blue_player img {
+  border: 2px solid blue;
+}
+
+.positive {
+  color: green;
+}
+.negative {
+  color: red;
+}
+
+.red {
+  background: red;
+  color: white;
+}
+.blue {
+  background: blue;
+  color: white;
+}
+.pagination {
+  margin-top: 10px;
+  font-size: 150%;
+}
+
+.help {
+  max-width: 600px;
+}
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+div.uploadStatus {
+  margin: 5px;
+}
+
+div.progressBar {
+  margin: 5px;
+}
+
+div.progressBar div.border {
+  background-color: #fff;
+  border: 1px solid grey;
+  width: 100%;
+}
+
+div.progressBar div.background {
+  background-color: #333;
+  height: 18px;
+  width: 0%;
+}
+

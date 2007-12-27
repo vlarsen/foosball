@@ -1,0 +1,33 @@
+<% if @game.redscore > @game.bluescore
+  redscoreclass  = "winner_result"
+  bluescoreclass = "looser_result"
+else
+  redscoreclass  = "looser_result"
+  bluescoreclass = "winner_result"
+end
+%>
+<table>
+  <tr>
+    <th>Played at</th>
+    <td colspan="3"><%= @game.played_at.strftime("%Y-%m-%d %H:%M") %></td>
+  </tr>
+  <tr>
+    <th>Red</th>
+    <td><span class="red_player"><%= render(:partial => "shared/player", :object => @game.red) %></span><br/>
+        <%= @game.red %>
+    </td>
+    <td><span class="<%= redscoreclass  %>"><%= @game.redscore %></span></td>
+    <td><%= rating_change(@game.red_rating_diff) %></td>
+  </tr>
+  <tr>
+    <th>Blue</th>
+    <td><span class="blue_player"><%= render(:partial => "shared/player", :object => @game.blue) %></span><br/>
+        <%= @game.blue %>
+    </td>
+    <td><span class="<%= bluescoreclass %>"><%= @game.bluescore %></span></td>
+    <td><%= rating_change(@game.blue_rating_diff) %></td>
+  </tr>
+</table>
+
+<%= link_to 'Edit', :action => 'edit', :id => @game %> |
+<%= link_to 'Back', :action => 'list' %>

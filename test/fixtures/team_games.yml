@@ -1,0 +1,20 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+first:
+  id: 1
+  played_at: 2006-03-28 10:00
+  red1: p1
+  red2: p2
+  redscore: 10
+  blue1: p3
+  blue2: p4
+  bluescore: 8
+another:
+  id: 2
+  played_at: 2006-04-02 12:15
+  red1: p1
+  red2: p3
+  redscore: 7
+  blue1: p2
+  blue2: p4
+  bluescore: 10
+

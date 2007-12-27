@@ -1,0 +1,95 @@
+<%
+hour_base_width = 0.5
+weekday_base_width = 0.5
+week_base_width = 1
+total_base_width = 1
+-%>
+<style type="text/css">
+table {
+  margin: 1em;
+  float: left;
+}
+</style>
+
+  <h2>Games played since <%= @start_date.to_s %></h2>
+ <table>
+  <caption>Games pr hour</caption>
+  <tr>
+    <th>Hour</th>
+    <th>Games</th>
+    <th>&nbsp;</th>
+  </tr>
+<% @hours.each do |w| -%>
+  <tr>
+    <td><%= w.hour %></td>
+    <td><%= w.count %></td>
+    <td><img src="/images/purple_bar.png" width="<%= w.count.to_i * hour_base_width %>" height="20"/></td>
+  </tr>
+<% end -%>
+</table>
+
+<table>
+  <caption>Games pr weekday</caption>
+  <tr>
+    <th>Weekday</th>
+    <th>Games</th>
+    <th>&nbsp;</th>
+  </tr>
+<% day_names = %w( Mon Tue Wed Thu Fri Sat Sun )
+  @weekdays.each do |w| -%>
+  <tr>
+    <td><%= day_names[w.weekday.to_i] %></td>
+    <td><%= w.count %></td>
+    <td><img src="/images/purple_bar.png" width="<%= w.count.to_i * weekday_base_width %>" height="20"/></td>
+  </tr>
+<% end -%>
+</table>
+
+<table>
+  <caption>Games pr week</caption>
+  <tr>
+    <th>Week no</th>
+    <th>Games</th>
+    <th>&nbsp;</th>
+  </tr>
+<% @weeks.each do |w| -%>
+  <tr>
+    <td><%= w.week %></td>
+    <td><%= w.count %></td>
+    <td><img src="/images/purple_bar.png" width="<%= w.count.to_i * week_base_width %>" height="20"/></td>
+  </tr>
+<% end -%>
+</table>
+
+<%
+total_games = @red_victories + @blue_victories
+max_bar = 100.0
+red_victories_bar  = max_bar *  @red_victories / total_games
+blue_victories_bar = max_bar * @blue_victories / total_games
+-%>
+<table>
+  <caption>Red vs Blue</caption>
+  <tr>
+    <th>Red victories</th>
+    <td><%= @red_victories %></td>
+    <td>
+      <%= image_tag 'red_bar',
+                    :alt => 'red',
+                    :size => "#{red_victories_bar.to_i * total_base_width}x20" %>
+    </td>
+  </tr>
+  <tr>
+    <th>Blue victories</th>
+    <td><%= @blue_victories %></td>
+    <td>
+      <%= image_tag 'blue_bar',
+                    :alt => 'blue',
+                    :size => "#{blue_victories_bar.to_i * total_base_width}x20" %>
+    </td>
+  </tr>
+  <tr>
+    <th>Total games</th>
+    <td><%= total_games %></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>

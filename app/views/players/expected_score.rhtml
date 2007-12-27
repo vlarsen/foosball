@@ -1,0 +1,89 @@
+<h1>Expected Score Matrix</h1>
+<table>
+  <tr class="listheading">
+<%
+  column_count = 0
+  @all_players.each do |columnname|
+    if column_count % 10 == 0
+%>
+    <th>&nbsp;</th>
+<%
+    end
+-%>
+    <th><%= render(:partial => "shared/player", :object => columnname) %></th>
+<%
+    column_count += 1
+  end
+-%>
+  </tr>
+<%
+odd_or_even = 0
+row_num = 0
+@all_players.each do |rowname|
+  odd_or_even = 1 - odd_or_even
+  row_num += 1
+-%>
+<%
+if row_num % 6 == 0
+-%>
+  <tr class="listheading">
+<%
+  column_count = 0
+  @all_players.each do |columnname|
+    if column_count % 10 == 0
+%>
+    <th>&nbsp;</th>
+<%
+    end
+-%>
+    <th><%= render(:partial => "shared/player", :object => columnname) %></th>
+<%
+    column_count += 1
+  end
+-%>
+  </tr>
+<%
+end # repeated header-row
+-%>
+<tr class="listrow<%= odd_or_even %>">
+<%
+  column_count = 0
+  @all_players.each do |columnname|
+    if column_count % 10 == 0
+%>
+    <th><%= render(:partial => "shared/player", :object => rowname) %></th>
+<%
+    end
+    the_expected = @expected[rowname][columnname]
+    if rowname == columnname
+-%>
+  <td class="empty"/>
+<%  else
+      if the_expected != nil
+	      result_class = the_expected =~ /^10-/ ? "positive" : "negative"
+		      -%>
+  <td class="<%= result_class %>" style="white-space: nowrap"><%= the_expected %></td>
+<%    end -%>
+  </td>
+<%
+    end
+    column_count += 1
+  end
+-%>
+</tr>
+<%
+end
+-%>
+</table>
+
+<p class="help">
+  This table shows your expected score against individual opponents.
+  Find yourself in the first column on a row, each cell shows the
+  game score estimated by the rating difference.
+</p>
+<p class="help">
+  Note that this is the closes estimated score; it is not necessarily
+  the score that gives you a positive ranking effect. It is the score
+  that will give the least rating difference after the match.
+</p>
+

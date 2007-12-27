@@ -1,0 +1,22 @@
+<html>
+<head>
+  <title>Team Foosball: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'scaffold' %>
+</head>
+<body>
+
+<div id="heading">
+<h1><a href="/">YTN Foosball</a>: Doubles</h1>
+<div class="menu">
+<%= link_to "List Games", :controller => 'team_games', :action => 'list' %> |
+<%= link_to "New Game", :controller => 'team_games', :action => 'new' %> |
+<%= link_to "Players", :controller => 'players', :action => 'team_list' %>
+</div>
+</div>
+
+<p style="color: green"><%= flash[:notice] %></p>
+
+<%= @content_for_layout %>
+
+</body>
+</html>

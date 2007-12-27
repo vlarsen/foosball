@@ -1,0 +1,20 @@
+xml.instruct!
+xml.rss("version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/") do
+  xml.channel do
+    xml.title "YTN Foosball Singles Games"
+    xml.link(url_for(:action => "list", :only_path => false))
+    xml.description "Singles foosball games played at YTN"
+    xml.language "en-US"
+    xml.ttl "40"
+
+    @games.each do |game|
+      xml.item do
+        xml.title("#{game.red} vs #{game.blue}: #{game.redscore} - #{game.bluescore}")
+        xml.description("game description")
+        xml.pubDate(game.played_at.to_s(:rfc822))
+        xml.guid(url_for(:only_path => false, :controller => "games", :action => "show", :id => game.id)
+        xml.link(url_for(:only_path => false, :controller => "games", :action => "show", :id => game.id)
+      end
+    end
+  end
+end

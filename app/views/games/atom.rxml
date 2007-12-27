@@ -1,0 +1,63 @@
+xml.instruct!
+
+xml.feed "xmlns" => "http://www.w3.org/2005/Atom" do
+
+  xml.title    "YTN Foosball Singles Games"
+  xml.link     "rel" => "self",
+               "href" => url_for(:only_path => false,
+                                 :controller => 'games',
+                                 :action => 'atom')
+  xml.link     "rel" => "alternate",
+               "href" => url_for(:only_path => false,
+                                 :controller => 'games')
+  xml.id       url_for(:only_path => false, :controller => 'games')
+  xml.updated  @games.first.played_at.strftime "%Y-%m-%dT%H:%M:%SZ" if @games.any?
+  xml.author   { xml.name "Foosball on Rails" }
+
+  @games.each do |game|
+    xml.entry do
+      xml.title    "#{game.red} vs #{game.blue}: #{game.redscore} - #{game.bluescore}"
+      xml.link     "rel" => "alternate",
+                   "href" => url_for(:only_path => false,
+                                     :controller => 'games',
+                                     :action => 'show',
+                                     :id => game.id)
+      xml.id       url_for(:only_path => false,
+                           :controller => 'games',
+                           :action => 'show',
+                           :id => game.id)
+      xml.updated  game.played_at.strftime "%Y-%m-%dT%H:%M:%SZ"
+      xml.author   { xml.name "#{game.red} and #{game.blue}" }
+      xml.summary  "Game Summary"
+      xml.content  "type" => "text" do
+        if game.redscore > game.bluescore
+          winner = game.red
+          winner_score = game.redscore
+          winner_side = "red"
+          winner_rating_diff = game.red_rating_diff
+          looser = game.blue
+          looser_score = game.bluescore
+          looser_side = "blue"
+          looser_rating_diff = game.blue_rating_diff
+        else
+          winner = game.blue
+          winner_score = game.bluescore
+          winner_side = "blue"
+          winner_rating_diff = game.blue_rating_diff
+          looser = game.red
+          looser_score = game.redscore
+          looser_side = "red"
+          looser_rating_diff = game.red_rating_diff
+        end
+        victory_adjective = case winner_score - looser_score
+          when 0..1: "marginal"
+          when 2..4: "comfortable"
+          when 5..7: "significant"
+          when 8..9: "crushing"
+          else       "all-out"
+        end
+        xml.text! "[#{game.played_at.strftime "%Y-%m-%d %H:%M"}] #{winner}, playing #{winner_side}, won over #{looser} with the final score of #{winner_score} to #{looser_score}. A#{"n" if victory_adjective == "all-out"} #{victory_adjective} victory. #{winner} rating changed #{winner_rating_diff.round}, and #{looser} rating changed #{looser_rating_diff.round}."
+      end
+    end
+  end
+end

@@ -1,0 +1,37 @@
+<% if @team_game.redscore > @team_game.bluescore
+  redscoreclass  = "winner_result"
+  bluescoreclass = "looser_result"
+else
+  redscoreclass  = "looser_result"
+  bluescoreclass = "winner_result"
+end
+%>
+<table>
+  <tr>
+    <th>Played at</th>
+    <td colspan="2"><%= @team_game.played_at.strftime("%Y-%m%-d %H:%M") %></td>
+  </tr>
+  <tr>
+    <th>Red</th>
+    <td>
+      <div><%= render(:partial => "shared/player", :object => @team_game.red1) %><br/>
+      <%= @team_game.red1 %></div>
+      <div><%= render(:partial => "shared/player", :object => @team_game.red2) %><br/>
+      <%= @team_game.red2 %></div>
+    </td>
+    <td><span class="<%= redscoreclass  %>"><%= @team_game.redscore %></span></td>
+  </tr>
+  <tr>
+    <th>Blue</th>
+    <td>
+      <div><%= render(:partial => "shared/player", :object => @team_game.blue1) %><br/>
+      <%= @team_game.blue1 %></div>
+      <div><%= render(:partial => "shared/player", :object => @team_game.blue2) %><br/>
+      <%= @team_game.blue2 %></div>
+    </td>
+    <td><span class="<%= bluescoreclass %>"><%= @team_game.bluescore %></span></td>
+  </tr>
+</table>
+
+<%= link_to 'Edit', :action => 'edit', :id => @team_game %> |
+<%= link_to 'Back', :action => 'list' %>

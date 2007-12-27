@@ -1,0 +1,90 @@
+<h1>Team Players</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Player</th>
+      <th>Rating</th>
+      <th>Games</th>
+    </tr>
+  </thead>
+  <tbody>
+<%
+  rank = 0
+  fake_rank = rank
+  prev_rating = 0
+  odd_or_even = 0
+  @players.each do |player|
+    odd_or_even = 1 - odd_or_even
+    rank += 1
+    this_rating = player.team_rating.round
+    if this_rating != prev_rating
+      fake_rank = rank
+    end
+    prev_rating = this_rating
+
+%>
+    <tr class="listrow<%= odd_or_even%>">
+      <td><%= fake_rank %></td>
+      <td><a href="/games/list/<%= player.name %>"><%= render(:partial => "shared/player", :object => player.name ) %></a></td>
+      <td><%= player.team_rating.round %></td>
+      <td><%= player.team_won %>w + <%= player.team_lost %>l = <%= player.total_team_games %></td>
+    </tr>
+<%
+  end
+%>
+  </tbody>
+</table>
+
+<p class="help">All games are used in calculation, and players with less
+than 10 games played are not shown, although they are part of the calculation.
+</p>
+
+<p class="help"> Start rating is 1500. For each game, the difference
+between the actual
+result and the expected result give a change in
+rating.</p>
+
+<pre>
+new rating = old + K * (actual - expected)
+</pre>
+
+<!--
+<p class="help">
+<code>K</code> is 32 for players below 2000, and 16 above.
+</p>
+-->
+<p class="help">
+<code>K</code> is 64 for all players.
+</p>
+
+<!--
+<p class="help">
+The actual result is
+calculated as 1.0 for an outright win, 0.95 with a score difference
+between 2 and 4, and 0.90 for a score difference of 1.
+</p>
+-->
+<p class="help">
+The actual result goes from 1.0 with a 10 - 0 victory, with 0.05 steps
+down to 0.55 for scoring 10 - 9. 
+</p>
+
+<p class="help">
+The expected result is based on the rating of each player: equal rating
+gives 0.5 expected result, difference of 100 gives 0.65 vs 0.35, and a
+difference of 400 gives 0.91 vs 0.09. See
+<a href="http://en.wikipedia.org/wiki/ELO_rating">ELO rating @ WikiPedia</a> for details.
+</p>
+<p class="help">
+Note: with 100 points difference you must win
+at least 10 - 7, and with 400 points difference you must win
+10 - 1, to avoid loosing points.
+</p>
+
+<p class="help">
+For doubles games, the rating used in calculation
+is the average of the players.
+Each rating is calculated individually for each player based on the pair
+result.
+</p>

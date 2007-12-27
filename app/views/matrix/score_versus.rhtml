@@ -1,0 +1,75 @@
+<h1>Results Matrix</h1>
+<table>
+  <tr class="listheading">
+    <th>&nbsp;</th>
+<%
+  @columns.each do |columnname|
+-%>
+    <th><a href="<%= url_for(:id => columnname) %>"><%= render(:partial => "shared/player", :object => columnname) %></a></th>
+<%
+  end
+-%>
+  </tr>
+<%
+odd_or_even = 0
+row_num = 0
+@rows.each do |rowname|
+  odd_or_even = 1 - odd_or_even
+  row_num += 1
+-%>
+<%
+if row_num % 6 == 0
+-%>
+  <tr class="listheading">
+    <th>&nbsp;</th>
+<%
+  @all_players.each do |columnname|
+-%>
+    <th><a href="<%= url_for(:id => columnname) %>"><%= render(:partial => "shared/player", :object => columnname) %></a></th>
+<%
+  end
+-%>
+  </tr>
+<%
+end # repeated header-row
+-%>
+<tr class="listrow<%= odd_or_even %>">
+  <th><a href="/matrix/score_versus/<%= rowname %>"><%= render(:partial => "shared/player", :object => rowname) %></a></th>
+<%
+  @all_players.each do |columnname|
+-%>
+  <td<% if rowname == columnname %> class="empty"<% end %>>
+<%
+		if @versus_hash.has_key?(rowname) && @versus_hash[rowname].has_key?(columnname)
+    	the_versus = @versus_hash[rowname][columnname]
+      the_percentage = 100.0 * the_versus.wins / the_versus.total
+      the_result_class = the_percentage >= 50.0 ? "positive" : "negative"
+-%>
+  <span title="<%= the_versus.scores.sort.join(" ") %>"><%= the_versus.wins %>/<%= the_versus.losses %></span><br/>
+<span class="<%= the_result_class %>"><%= sprintf("%0.0f", the_percentage) %>%</span><br/>
+<%= rating_change(the_versus.rating_gain) %><br/><%= rating_change(the_versus.rating_loss) %><br/>
+<!-- <span class="red"><%= the_versus.red %></span>/<span class="blue"><%= the_versus.blue %></span> -->
+<%  end -%>
+  </td>
+<%
+  end
+-%>
+</tr>
+<%
+end
+-%>
+</table>
+
+<p class="help">
+  This table shows your score against individual opponents.
+  Find yourself in the first column on a row, and read each cell
+  with values as</p>
+<pre>
+My wins / my losses
+my percentage
+My rating gain
+My rating loss
+</pre>
+<p class="help">
+Hover over the win/loss field to see a pop-up with a sorted list of score differences.
+</p>

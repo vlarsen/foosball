@@ -1,0 +1,26 @@
+<html>
+<head>
+  <title>Singles Foosball: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <%= auto_discovery_link_tag(:atom, {:controller => 'games', :action => 'atom'}) %>
+</head>
+<body>
+
+<div id="heading">
+<h1><a href="/">YTN Foosball</a>: Singles</h1>
+<div class="menu">
+<%= link_to "List Games", :controller => 'games', :action => 'list', :id => nil %> |
+<%= link_to "New Game", :controller => 'games', :action => 'new' %> |
+<%= link_to "Vs Matrix", :controller => 'matrix', :action => 'score_versus' %> |
+<%= link_to "Expected Score", :controller => 'players', :action => 'expected_score' %> |
+<%= link_to "Table", :controller => 'table', :action => 'status' %> |
+<%= link_to "Statistics", :controller => 'statistics' %>
+</div>
+</div>
+
+<p style="color: green"><%= flash[:notice] %></p>
+
+<%= @content_for_layout %>
+
+</body>
+</html>

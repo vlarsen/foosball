@@ -1,0 +1,32 @@
+<%= error_messages_for 'game' %>
+
+<!--[form:game]-->
+<table class="form">
+<tr>
+  <td colspan="2">
+<label for="game_played_at">Date played</label><br/>
+<%= datetime_select 'game', 'played_at' %>
+  </td>
+</tr>
+<tr>
+  <td>
+   <label for="game_red">Red</label><br/>
+   <%= text_field 'game', 'red'  %>
+  </td>
+  <td>
+    <label for="game_redscore">Red score</label><br/>
+    <%= text_field 'game', 'redscore', :size => 4  %>
+  </td>
+</tr>
+<tr>
+  <td>
+    <label for="game_blue">Blue</label><br/>
+    <%= text_field 'game', 'blue'  %>
+  </td>
+  <td>
+    <label for="game_bluescore">Blue score</label><br/>
+    <%= text_field 'game', 'bluescore', :size => 4  %>
+  </td>
+</tr>
+</table>
+<!--[eoform:game]-->
