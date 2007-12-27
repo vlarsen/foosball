@@ -29,12 +29,12 @@ class GamesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    options = { :per_page => 20, :order => "played_at desc" }
-    if params.has_key?(:id)
-      options[:conditions] = "blue = '#{params[:id]}' or red = '#{params[:id]}'"
-      @for_player = params[:id]
-    end
-    @game_pages, @games = paginate :games, options
+#    options = { :order => "played_at desc" }
+#    if params.has_key?(:id)
+#      options[:conditions] = "blue = '#{params[:id]}' or red = '#{params[:id]}'"
+#      @for_player = params[:id]
+#    end
+    @games = Game.paginate :page => params[:page], :order => "played_at desc"      # , options
     
     @players = Player.rated_players
   end
