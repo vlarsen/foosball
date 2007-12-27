@@ -1,8 +1,3 @@
-<div style="float: right">
-  <h1>Current table status</h1>
-  <img src="http://dhcp-246.trondheim.corp.yahoo.com:8888/out.jpg" alt="Table status"/>
-</div>
-
 <h1>Listing team games</h1>
 
 <table>
@@ -58,5 +53,5 @@ for team_game in @team_games
 </table>
 
 <div class="pagination">
-page: <%= pagination_links(@team_game_pages) %>
+page: <%= will_paginate @team_games %>
 </div>

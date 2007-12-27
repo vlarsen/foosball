@@ -9,7 +9,7 @@ class TeamGamesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @team_game_pages, @team_games = paginate :team_games, :per_page => 10, :order => "played_at desc"
+    @team_games = TeamGame.paginate :page => params[:page], :order => "played_at desc"
   end
 
   def show
