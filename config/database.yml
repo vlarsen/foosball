@@ -14,7 +14,7 @@ development:
   adapter: mysql
   database: foosball_development
   username: root
-  password:
+  password: nallepuh
   host: localhost
 
 # Warning: The database defined as 'test' will be erased and
@@ -24,12 +24,12 @@ test:
   adapter: mysql
   database: foosball_test
   username: root
-  password:
+  password: nallepuh
   host: localhost
 
 production:
   adapter: mysql
   database: foosball_production
   username: root
-  password: 
-  socket: /var/run/mysqld/mysqld.sock
+  password: nallepuh
+  host: localhost
