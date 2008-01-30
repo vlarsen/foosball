@@ -1,5 +1,5 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+set :application, "foosball"
+set :repository,  "/repo/foosball.git"
 
 # If you aren't deploying to /u/apps/#{application} on the target
 # servers (which is the default), you can specify the actual location
@@ -8,8 +8,8 @@ set :repository,  "set your repository location here"
 
 # If you aren't using Subversion to manage your source code, specify
 # your SCM below:
-# set :scm, :subversion
+set :scm, :git
 
-role :app, "your app-server here"
-role :web, "your web-server here"
-role :db,  "your db-server here", :primary => true
+role :app, "core.trondheim.corp.yahoo.com"
+role :web, "core.trondheim.corp.yahoo.com"
+role :db,  "core.trondheim.corp.yahoo.com", :primary => true
