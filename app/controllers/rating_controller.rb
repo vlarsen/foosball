@@ -3,7 +3,7 @@ class RatingController < ApplicationController
   def singles
     @max_disp_history = 10
     @ratings = Hash.new { |h, k| h[k] = Player.new(k) }
-    @rating_blacklist = %w(boros fledsbo trondoiv ism )
+    @rating_blacklist = %w(boros fledsbo trondoiv ism jorgenvi)
     1.times do
       clear_win_loss_stats
       calculate_singles_ratings

@@ -3,7 +3,7 @@ class StatisticsController < ApplicationController
   layout "games"
 
   def index
-    @start_date = Date.new(2007, 01, 01)
+    @start_date = Date.new(2008, 01, 01)
     @weeks =
       Game.find(:all,
                 :select => 'week(played_at) as week, count(*) as count',

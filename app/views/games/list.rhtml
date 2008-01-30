@@ -6,6 +6,7 @@
         <th>Rank</th>
         <th>Player</th>
         <th>Rating</th>
+        <th>Won</th>
         <th>Games</th>
       </tr>
     </thead>
@@ -27,11 +28,13 @@
       this_won = player.won.to_i
       this_lost = player.lost.to_i
       this_numgames = this_won + this_lost
+      won_percent = this_won.to_f / this_numgames.to_f * 100
   %>
       <tr class="sidebarrow<%= odd_or_even%>">
         <td><%= fake_rank %></td>
         <td><%= player.name %></td>
         <td><%= player.rating.round %></td>
+        <td><%= won_percent.round %>%</td>
         <td><%= player.won %>w + <%= player.lost %>l = <%= player.total_games %></td>
       </tr>
   <%
