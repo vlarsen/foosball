@@ -14,7 +14,7 @@ development:
   adapter: mysql
   database: foosball_development
   username: root
-  password: nallepuh
+  password: 
   host: localhost
 
 # Warning: The database defined as 'test' will be erased and
