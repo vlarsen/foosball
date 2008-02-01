@@ -16,25 +16,25 @@ a { color: #000; }
 a:visited { color: #666; }
 a:hover { color: #fff; background-color:#000; }
 
-#heading {
+#hd {
   border: 1px solid #339;
   padding: 5px;
   font-size: 150%;
 }
-#heading h1 {
+#hd h1 {
   padding-top: 0px;
 }
-#heading h1 a, #heading h1 a:visited, #heading h1 a:hover {
+#hd h1 a, #hd h1 a:visited, #hd h1 a:hover {
   color: #000;
   background-color: #fff;
 }
 
-#heading .menu {
+#hd .menu {
   padding: 5px;
   background-color: #339;
   color: white;
 }
-#heading .menu a {
+#hd .menu a {
   padding: 2px;
   color: white;
 }

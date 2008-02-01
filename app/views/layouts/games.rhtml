@@ -1,26 +1,40 @@
-<html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Singles Foosball: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'yui/reset-fonts-grids/reset-fonts-grids', :media => "all" %>
+  <%= stylesheet_link_tag 'yui/base/base', :media => "all" %>
+  <%= stylesheet_link_tag 'foosball', :media => "all" %>
   <%= auto_discovery_link_tag(:atom, {:controller => 'games', :action => 'atom'}) %>
 </head>
 <body>
+  <div id="doc3">
 
-<div id="heading">
-<h1><a href="/">YTN Foosball</a>: Singles</h1>
-<div class="menu">
-<%= link_to "List Games", :controller => 'games', :action => 'list', :id => nil %> |
-<%= link_to "New Game", :controller => 'games', :action => 'new' %> |
-<%= link_to "Vs Matrix", :controller => 'matrix', :action => 'score_versus' %> |
-<%= link_to "Expected Score", :controller => 'players', :action => 'expected_score' %> |
-<%= link_to "Table", :controller => 'table', :action => 'status' %> |
-<%= link_to "Statistics", :controller => 'statistics' %>
-</div>
-</div>
+    <div id="hd">
+      <h1><a href="/">YTN Foosball</a>: Singles</h1>
+      <div class="menu">
+<span><%= link_to "List Games", :controller => 'games', :action => 'list', :id => nil %></span> |
+<span><%= link_to "New Game", :controller => 'games', :action => 'new' %></span> |
+<span><%= link_to "Vs Matrix", :controller => 'matrix', :action => 'score_versus' %></span> |
+<span><%= link_to "Expected Score", :controller => 'players', :action => 'expected_score' %></span> |
+<span><%= link_to "Table", :controller => 'table', :action => 'status' %></span> |
+<span><%= link_to "Statistics", :controller => 'statistics' %></span>
+      </div> <!-- .menu -->
+      <p style="color: green"><%= flash[:notice] %></p>
+    </div> <!-- #hd -->
 
-<p style="color: green"><%= flash[:notice] %></p>
+    <div id="bd">
+<%= yield %>
+    </div> <!-- #bd -->
 
-<%= @content_for_layout %>
+    <div id="ft">
+      <hr/>
+      <p>Yahoo! Table-Soccer Association.<br/>
+        For more info, join <code>trd-tablesoccer@yahoo-inc.com</code></p>
+    </div> <!-- #ft -->
 
+  </div> <!-- #doc -->
 </body>
 </html>

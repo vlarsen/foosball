@@ -1,22 +1,36 @@
-<html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+  "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Team Foosball: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'yui/reset-fonts-grids/reset-fonts-grids', :media => "all" %>
+  <%= stylesheet_link_tag 'yui/base/base', :media => "all" %>
+  <%= stylesheet_link_tag 'foosball', :media => "all" %>
 </head>
 <body>
+  <div id="doc">
 
-<div id="heading">
-<h1><a href="/">YTN Foosball</a>: Doubles</h1>
-<div class="menu">
-<%= link_to "List Games", :controller => 'team_games', :action => 'list' %> |
-<%= link_to "New Game", :controller => 'team_games', :action => 'new' %> |
-<%= link_to "Players", :controller => 'players', :action => 'team_list' %>
-</div>
-</div>
+    <div id="hd">
+      <h1><a href="/">YTN Foosball</a>: Doubles</h1>
+      <div class="menu">
+        <span><%= link_to "List Games", :controller => 'team_games', :action => 'list' %></span> |
+        <span><%= link_to "New Game", :controller => 'team_games', :action => 'new' %></span> |
+        <span><%= link_to "Players", :controller => 'players', :action => 'team_list' %></span>
+      </div> <!-- .menu -->
+      <p style="color: green"><%= flash[:notice] %></p>
+    </div> <!-- #hd -->
 
-<p style="color: green"><%= flash[:notice] %></p>
+    <div id="bd">
+<%= yield %>
+    </div> <!-- #bd -->
 
-<%= @content_for_layout %>
+    <div id="ft">
+      <hr/>
+      <p>Yahoo! Table-Soccer Association.<br/>
+        For more info, join <code>trd-tablesoccer@yahoo-inc.com</code></p>
+    </div> <!-- #ft -->
 
+  </div> <!-- #doc -->
 </body>
 </html>
