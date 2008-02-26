@@ -1,4 +1,5 @@
-<div class="rightsidebar">
+<div class="yui-t6">
+<div class="yui-b">
   <h3>Rating list</h3>
   <table>
     <thead>
@@ -42,8 +43,10 @@
   %>
     </tbody>
   </table>
-</div>
+</div> <!-- .yui-b -->
 
+<div id="yui-main">
+  <div class="yui-b">
 <h2>Listing games <%= "for #{link_to @for_player, {:controller => "matrix", :action => "score_versus", :id => @for_player}}" if @for_player %> </h2>
 
 <table>
@@ -90,3 +93,6 @@ for game in @games
 <div class="pagination">
 page: <%= will_paginate @games %>
 </div>
+    </div> <!-- .yui-b -->
+  </div> <!-- #yui-main -->
+</div> <!-- .yui-t6 -->
