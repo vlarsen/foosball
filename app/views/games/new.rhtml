@@ -1,4 +1,5 @@
-<h1>New game</h1>
+<div class="yui-u first">
+  <h1>New game</h1>
 
 <% form_tag :action => 'create' do -%>
   <%= render :partial => 'form' %>
@@ -6,3 +7,4 @@
 <% end -%>
 
 <%= link_to 'Back', :action => 'list' %>
+</div> <!-- .yui-u .first -->

@@ -64,8 +64,8 @@ table {
 <%
 total_games = @red_victories + @blue_victories
 max_bar = 100.0
-red_victories_bar  = max_bar *  @red_victories / total_games
-blue_victories_bar = max_bar * @blue_victories / total_games
+red_victories_bar  = (total_games > 0) ? (max_bar *  @red_victories / total_games) : 0
+blue_victories_bar = (total_games > 0) ? (max_bar * @blue_victories / total_games) : 0
 -%>
 <table>
   <caption>Red vs Blue</caption>

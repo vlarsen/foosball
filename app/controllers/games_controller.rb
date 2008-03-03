@@ -34,6 +34,11 @@ class GamesController < ApplicationController
       options[:conditions] = "blue = '#{params[:id]}' or red = '#{params[:id]}'"
       @for_player = params[:id]
     end
+    if params.has_key?(:playera) && params.has_key?(:playerb)
+      options[:conditions] = "(blue='#{params[:playera]}' and red='#{params[:playerb]}') or (red='#{params[:playera]}' and blue='#{params[:playerb]}')"
+      @for_player = "#{params[:playera]} vs #{params[:playerb]}"
+    end
+
     @games = Game.paginate options
     
     @players = Player.rated_players
