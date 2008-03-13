@@ -79,6 +79,10 @@ th {
 td {
   border: 1px solid black;
 }
+table.result {
+    margin: 0px;
+    padding: 2px;
+}
 table.result th, table.result td {
     border: 0px;
 }
