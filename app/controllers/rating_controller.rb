@@ -1,5 +1,26 @@
 class RatingController < ApplicationController
 
+  def graph
+    @player = Player.find_by_name(params[:player])
+    @games = Game.find(:all,
+                        :conditions => ["red = ? or blue = ?", params[:player], params[:player]])
+    ratings = Array.new
+    curr_rating = @player.rating
+    @games.each do |g|
+      curr_rating -= (g.red == @player.name) ? g.red_rating_diff : g.blue_rating_diff
+      ratings << curr_rating
+    end
+    gr = Gruff::Line.new()
+    gr.title = "Rating #{@player.name}"
+    gr.data(@player.name, ratings)
+    gr.maximum_value = 1900
+    gr.minimum_value = 1300
+    send_data(gr.to_blob,
+              :disposition => 'inline',
+              :type => 'image/png',
+              :filename => "#{@player.name}_rating.png")
+  end
+  
   def singles
     @max_disp_history = 10
     @ratings = Hash.new { |h, k| h[k] = Player.new(k) }
