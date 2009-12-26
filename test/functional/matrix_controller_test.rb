@@ -2,8 +2,6 @@ require 'test_helper'
 
 class MatrixControllerTest < ActionController::TestCase
   
-  fixtures :games
-  
   def setup
     @controller = MatrixController.new
     @request    = ActionController::TestRequest.new

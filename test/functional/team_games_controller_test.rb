@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class TeamGamesControllerTest < ActionController::TestCase
-  fixtures :team_games
 
   def setup
     @controller = TeamGamesController.new

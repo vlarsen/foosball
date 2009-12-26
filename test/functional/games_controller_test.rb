@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class GamesControllerTest < ActionController::TestCase
-  fixtures :games
-
   test "index" do
     get :index
     assert_response :success
