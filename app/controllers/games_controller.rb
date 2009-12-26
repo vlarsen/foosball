@@ -1,7 +1,6 @@
 class GamesController < ApplicationController
 
   layout "games", :except => [ :atom, :csv, :versus_graph ]
-  session :off, :only => [ :atom, :csv, :versus_graph ]
 
   def index
     list
