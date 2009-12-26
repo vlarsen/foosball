@@ -1,10 +1,6 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'team_games_controller'
+require 'test_helper'
 
-# Re-raise errors caught by the controller.
-class TeamGamesController; def rescue_action(e) raise e end; end
-
-class TeamGamesControllerTest < Test::Unit::TestCase
+class TeamGamesControllerTest < ActionController::TestCase
   fixtures :team_games
 
   def setup
@@ -13,13 +9,13 @@ class TeamGamesControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
   end
 
-  def test_index
+  test "index" do
     get :index
     assert_response :success
     assert_template 'list'
   end
 
-  def test_list
+  test "list" do
     get :list
 
     assert_response :success
@@ -28,7 +24,7 @@ class TeamGamesControllerTest < Test::Unit::TestCase
     assert_not_nil assigns(:team_games)
   end
 
-  def test_show
+  test "show" do
     get :show, :id => 1
 
     assert_response :success
@@ -38,7 +34,7 @@ class TeamGamesControllerTest < Test::Unit::TestCase
     assert assigns(:team_game).valid?
   end
 
-  def test_new
+  test "new" do
     get :new
 
     assert_response :success
@@ -47,7 +43,7 @@ class TeamGamesControllerTest < Test::Unit::TestCase
     assert_not_nil assigns(:team_game)
   end
 
-  def test_create
+  test "create" do
     num_team_games = TeamGame.count
 
     post :create, :team_game => {}
@@ -58,7 +54,7 @@ class TeamGamesControllerTest < Test::Unit::TestCase
     assert_equal num_team_games + 1, TeamGame.count
   end
 
-  def test_edit
+  test "edit" do
     get :edit, :id => 1
 
     assert_response :success
@@ -68,13 +64,13 @@ class TeamGamesControllerTest < Test::Unit::TestCase
     assert assigns(:team_game).valid?
   end
 
-  def test_update
+  test "update" do
     post :update, :id => 1
     assert_response :redirect
     assert_redirected_to :action => 'show', :id => 1
   end
 
-  def test_destroy
+  test "destroy" do
     assert_not_nil TeamGame.find(1)
 
     post :destroy, :id => 1

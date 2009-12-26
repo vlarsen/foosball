@@ -1,5 +1,19 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
-  id: 1
-another:
-  id: 2
+
+one:
+    name: MyString
+    won: 1
+    lost: 1
+    rating: 1.5
+    team_won: 1
+    team_lost: 1
+    team_rating: 1.5
+    
+two:
+    name: MyString
+    won: 1
+    lost: 1
+    rating: 1.5
+    team_won: 1
+    team_lost: 1
+    team_rating: 1.5

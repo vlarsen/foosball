@@ -1,10 +1,6 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'matrix_controller'
+require 'test_helper'
 
-# Re-raise errors caught by the controller.
-class MatrixController; def rescue_action(e) raise e end; end
-
-class MatrixControllerTest < Test::Unit::TestCase
+class MatrixControllerTest < ActionController::TestCase
   
   fixtures :games
   
@@ -14,8 +10,7 @@ class MatrixControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
   end
 
-  # Replace this with your real tests.
-  def test_versus
+  test "versus" do
     assert_equal Game.count, 3
     @controller.score_versus
     assert_equal @controller.versus_hash['vlarsen']['gv'].wins, 0

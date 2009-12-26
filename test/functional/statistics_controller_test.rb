@@ -1,18 +1,8 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require 'statistics_controller'
+require 'test_helper'
 
-# Re-raise errors caught by the controller.
-class StatisticsController; def rescue_action(e) raise e end; end
-
-class StatisticsControllerTest < Test::Unit::TestCase
-  def setup
-    @controller = StatisticsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-  end
-
+class StatisticsControllerTest < ActionController::TestCase
   # Replace this with your real tests.
-  def test_truth
+  test "the truth" do
     assert true
   end
 end
