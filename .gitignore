@@ -2,3 +2,4 @@ log
 tmp
 *.sql
 db/*.sqlite3
+doc/app
