@@ -6,19 +6,19 @@ class StatisticsController < ApplicationController
     @start_date = Date.new(2008, 01, 01)
     @weeks =
       Game.find(:all,
-                :select => 'week(played_at) as week, count(*) as count',
+                :select => 'strftime("%W", played_at) as week, count(*) as count',
                 :conditions => ["played_at >= ?", @start_date],
-                :group => 'week(played_at)')
+                :group => 'week')
     @weekdays =
       Game.find(:all,
-                :select => 'weekday(played_at) as weekday, count(*) as count',
+                :select => 'strftime("%w", played_at) as weekday, count(*) as count',
                 :conditions => ["played_at >= ?", @start_date],
-                :group => 'weekday(played_at)')
+                :group => 'weekday')
     @hours =
       Game.find(:all,
-                :select => 'hour(played_at) as hour, count(*) as count',
+                :select => 'strftime("%H", played_at) as hour, count(*) as count',
                 :conditions => ["played_at >= ?", @start_date],
-                :group => 'hour(played_at)')
+                :group => 'hour')
     red_games =
         Game.find(:all,
                   :select => 'count(*) as count',
